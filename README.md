@@ -1,5 +1,4 @@
 # -Python-Backend-Engineer-Data-Pipelines-
-Reliability-First Python ETL Example
 Overview
 
 This project demonstrates a simple reliability-focused ETL-style Python workflow with:
