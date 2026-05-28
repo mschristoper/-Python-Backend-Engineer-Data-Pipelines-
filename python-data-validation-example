@@ -1,0 +1,38 @@
+import logging
+
+logging.basicConfig(level=logging.INFO)
+
+
+def process_transaction(transaction):
+
+    # Validate required fields
+    if "customer_id" not in transaction:
+        raise ValueError("Missing customer_id")
+
+    if "amount" not in transaction:
+        raise ValueError("Missing amount")
+
+    # Validate business rules
+    if not isinstance(transaction["amount"], (int, float)):
+        raise TypeError("Amount must be numeric")
+
+    if transaction["amount"] < 0:
+        raise ValueError("Amount cannot be negative")
+
+    try:
+        # Example transformation
+        total_with_fee = transaction["amount"] * 1.05
+
+        logging.info(
+            f"Transaction processed for customer "
+            f"{transaction['customer_id']}"
+        )
+
+        return {
+            "customer_id": transaction["customer_id"],
+            "total_with_fee": round(total_with_fee, 2)
+        }
+
+    except Exception as e:
+        logging.error(f"Processing failed: {e}")
+        raise
